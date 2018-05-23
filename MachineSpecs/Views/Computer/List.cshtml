@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Computer>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Memory (GB)</th>
+        <th>Storage Capacity (TB)</th>
+        <th>Storage Type</th>
+        <th>Weight (kg)</th>
+        <th>Power (W PSU)</th>
+    </tr>
+    @foreach (var c in Model)
+    {
+    <tr>
+        <td>@c.ComputerID</td>
+        <td>@c.Memory</td>
+        <td>@c.StorageCapacity</td>
+        <td>@c.StorageType</td>
+        <td>@c.Weight</td>
+        <td>@c.Power</td>
+    </tr>
+    }
+</table>
