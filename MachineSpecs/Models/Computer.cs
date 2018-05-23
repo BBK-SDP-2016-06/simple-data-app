@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
 namespace MachineSpecs.Models
 {
     public class Computer
@@ -15,5 +17,17 @@ namespace MachineSpecs.Models
         public Processor Processor { get; set; }
         public GraphicsCard GraphicsCard { get; set; }
         public List<Connection> Connections { get; set; }
+
+        public string GetFullText()
+        {
+            return string.Join(' ', new List<string>
+            {
+                GraphicsCard.Manufacturer,
+                GraphicsCard.Model,
+                Processor.Manufacturer,
+                Processor.Model,
+                StorageType
+            }).ToLower();
+        }
     }
 }

@@ -1,0 +1,14 @@
+﻿@model Computer
+
+<tr>
+    <th scope="row">@Model.ComputerID</th>
+    <td>@Model.Memory</td>
+    <td>@Model.StorageCapacity</td>
+    <td>@Model.StorageType</td>
+    <td>@string.Join(",", Model.Connections.Select(c => c.Quantity + " x " + c.Port.Name))</td>
+    <td>@Model.GraphicsCard.Manufacturer @Model.GraphicsCard.Model</td>
+    <td>@Model.Weight</td>
+    <td>@Model.Power</td>
+    <td>@Model.Processor.Manufacturer @Model.Processor.Model</td>
+    <td><a class="btn btn-outline-primary" asp-controller="Computer" asp-action="Edit" asp-route-id="@Model.ComputerID" asp-route-returnUrl="@ViewContext.HttpContext.Request.PathAndQuery()">Edit</a></td>
+</tr>

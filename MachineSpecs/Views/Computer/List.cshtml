@@ -1,23 +1,31 @@
-﻿@model IEnumerable<Computer>
+﻿@model ComputerListViewModel
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Memory (GB)</th>
-        <th>Storage Capacity (TB)</th>
-        <th>Storage Type</th>
-        <th>Weight (kg)</th>
-        <th>Power (W PSU)</th>
-    </tr>
-    @foreach (var c in Model)
-    {
-    <tr>
-        <td>@c.ComputerID</td>
-        <td>@c.Memory</td>
-        <td>@c.StorageCapacity</td>
-        <td>@c.StorageType</td>
-        <td>@c.Weight</td>
-        <td>@c.Power</td>
-    </tr>
-    }
-</table>
+<div class="m-1">
+    <div>
+        @Html.Partial("Filter", Model.FilterInfo)
+    </div>
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Memory (GB)</th>
+                    <th scope="col">Storage (TB)</th>
+                    <th scope="col">Storage Type</th>
+                    <th scope="col">Connections</th>
+                    <th scope="col">Graphics Card</th>
+                    <th scope="col">Weight (kg)</th>
+                    <th scope="col">Power (PSU)</th>
+                    <th scope="col">Processor</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model.Computers)
+                {
+                    @Html.Partial("ComputerSummary", c)
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

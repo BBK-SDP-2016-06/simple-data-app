@@ -1,0 +1,68 @@
+﻿@model FilterInfo
+
+<form asp-action="List">
+    <div class="form-row">
+        <div class="col-lg">
+            <div class="ml-3 mr-3">
+                <label>Keyword Search</label>
+                <input class="m-1" id="search" name="search" type="text" placeholder="Search.." value="@Model.SearchWord">
+            </div>
+            <div data-role="main" class="ui-content">
+                <div data-role="rangeslider">
+                    <label for="memoryMin">Memory (GB)</label>
+                    <input type="range" name="memoryMin" value="@Model.MemoryMin" min="0" max="@Model.OverallMemoryMax">
+                    <label for="memoryMax">Memory (GB)</label>
+                    <input type="range" name="memoryMax" value="@Model.MemoryMax" min="0" max="@Model.OverallMemoryMax">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg">
+            <div class="ml-3 mr-3">
+                <label for="selectedPort">Port</label>
+                <select for="All" name="selectedPort">
+
+                    @if (Model.SelectedPort.Equals("All"))
+                    {
+                        <option value="All" selected>All</option>
+                    }
+                    else
+                    {
+                        <option value="All">All</option>
+
+                    }
+
+                    @foreach (var port in Model.Ports)
+                    {
+                        if (port.Name.Equals(Model.SelectedPort))
+                        {
+                            <option value="@port.Name" selected>@port.Name</option>
+
+                        }
+                        else
+                        {
+                            <option value="@port.Name">@port.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="ml-3 mr-3">
+                <label for="orderBy">Order By</label>
+                <select name="orderBy">
+                    @foreach (var orderMethod in Model.OrderMethods)
+                    {
+                        if (orderMethod.Equals(Model.OrderBy))
+                        {
+                            <option value="@orderMethod" selected>@orderMethod</option>
+                        }
+                        else
+                        {
+                            <option value="@orderMethod">@orderMethod</option>
+                        }
+
+                    }
+                </select>
+            </div>
+        </div>
+        <button class="btn m-3" type="submit">Filter</button>
+    </div>
+</form>
