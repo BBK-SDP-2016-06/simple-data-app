@@ -1,0 +1,10 @@
+8 GB	1 TB SSD	2 x USB 3.0, 4 x USB 2.0	NVIDIA GeForce GTX 770	8.1 kg	500 W PSU	 Intel® Celeron™ N3050 Processor
+16 GB	2 TB HDD	3 x USB 3.0, 4 x USB 2.0	NVIDIA GeForce GTX 960	12 kg	500 W PSU	AMD FX 4300 Processor
+8 GB	3 TB HDD	4 x USB 3.0, 4 x USB 2.0	Radeon R7360	16 lb	450 W PSU	AMD Athlon Quad-Core APU Athlon 5150 
+16 GB	4 TB HDD	5 x USB 2.0, 4 x USB 3.0	NVIDIA GeForce GTX 1080	13.8 lb	500 W PSU	AMD FX 8-Core Black Edition FX-8350
+32 GB	750 GB SDD	2 x USB 3.0, 2 x USB 2.0, 1 x USB C	Radeon RX 480	7 kg	1000 W PSU	AMD FX 8-Core Black Edition FX-8370 
+32 GB	2 TB SDD	2 x USB C, 4 x USB 3.0	Radeon R9 380	6 kg	450 W PSU	Intel Core i7-6700K 4GHz Processor
+8 GB	2 TB HDD	8 x USB 3.0	NVIDIA GeForce GTX 1080	15 lb	1000 W PSU	Intel® Core™ i5-6400 Processor
+16 GB	500 GB SDD	4 x USB 2.0	NVIDIA GeForce GTX 770	8 lb	750 W PSU	Intel® Core™ i5-6400 Processor
+2 GB	2 TB HDD	10 x USB 3.0, 10 x USB 2.0, 10 x USB C	AMD FirePro W4100	9 kg	508 W PSU	Intel Core i7 Extreme Edition 3 GHz Processor
+512 MB	80 GB SSD	19 x USB 3.0, 4 x USB 2.0	Radeon RX 480	22 lb	700 W PSU	Intel® Core™ i5-6400 Processor
