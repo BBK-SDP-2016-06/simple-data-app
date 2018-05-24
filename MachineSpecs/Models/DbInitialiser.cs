@@ -7,6 +7,11 @@ using System.Linq;
 
 namespace MachineSpecs.Models
 {
+    /// <summary>
+    /// Initialises a database by seeding with data (if not already done so).
+    /// This class and static method are called by the startup class on
+    /// application execution.
+    /// </summary>
     public static class DbInitialiser
     {
         private static List<Processor> SeedProcessors = new List<Processor>();
@@ -15,9 +20,11 @@ namespace MachineSpecs.Models
 
         public static void Initialise(IApplicationBuilder app)
         {
+            //Obtain application database context
             ApplicationDbContext context = app.ApplicationServices.GetRequiredService<ApplicationDbContext>();
             context.Database.Migrate();
 
+            //Only perform seeding operation if no domain objects exist in the database
             if (!context.Computers.Any())
             {
                 //Extract raw data rows from flat text file
@@ -81,17 +88,41 @@ namespace MachineSpecs.Models
             }
         }
 
+        /// <summary>
+        /// Extracts the Memory component of the data cell as a decimal. This method
+        /// can fail if the raw data is not formatted correctly- need to change to
+        /// create more robust error handling.
+        /// </summary>
+        /// <param name="data">Raw data obtained from seed flat file.</param>
+        /// <returns>The memory of the computer instance that this data represents 
+        /// as a decimal.</returns>
         private static decimal CalculateMemory(string data)
         {
             string[] segments = data.Split(' ');
             if (segments[1].Equals("GB"))
                 return decimal.Parse(segments[0]);
             else
+                //Convert MB to GB - data specific not good practice
                 return decimal.Parse(segments[0]) / 1024M;
         }
 
+        /// <summary>
+        /// Extracts the Power rating from the raw data cell. This method
+        /// can fail if the raw data is not formatted correctly- need to change to
+        /// create more robust error handling.
+        /// </summary>
+        /// <param name="data">Raw data obtained from the seed flat file.</param>
+        /// <returns>The Power rating of the computer instance that this data represents
+        /// as an integer.</returns>
         private static int CalculatePower(string data) => int.Parse(data.Split(' ')[0]);
 
+        /// <summary>
+        /// Calculates the storage capacity in TB of the raw data cell. This method
+        /// can fail if the raw data is not formatted correctly- need to change to
+        /// create more robust error handling.
+        /// </summary>
+        /// <param name="data">Raw data obtained from the seed flat file.</param>
+        /// <returns>The storage capacity of this computer instance.</returns>
         private static decimal CalculateStorageCapacity(string data)
         {
             string[] segments = data.Split(' ');
@@ -101,12 +132,21 @@ namespace MachineSpecs.Models
                 return decimal.Parse(segments[0]) / 1000M;
         }
 
+        /// <summary>
+        /// Extracts the weight in kg from the raw data cell. This method
+        /// can fail if the raw data is not formatted correctly- need to change to
+        /// create more robust error handling.
+        /// </summary>
+        /// <param name="data">Raw data obtained from the seed flat file.</param>
+        /// <returns>The weight of the computer instance.</returns>
         private static decimal CalculateWeight(string data)
         {
             string[] segments = data.Split(' ');
             if (segments[1].Equals("kg"))
+                //return value as is if in kg
                 return decimal.Parse(segments[0]);
             else
+                //return the value converted to kg from lb
                 return decimal.Parse(segments[0]) * 0.453592M;
         }
     }

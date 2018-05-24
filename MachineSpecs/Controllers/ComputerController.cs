@@ -22,15 +22,21 @@ namespace MachineSpecs.Controllers
 
         public ViewResult List(string search, string selectedPort = "All", int memoryMin = 0, int memoryMax = 50, string orderBy = "ID")
         {
+            //First obtain call computers from database repo
             var computers = repository.Computers;
+
+            //Filter computers to only keep those with full text containing search word
             if (!string.IsNullOrEmpty(search))
             {
                 computers = computers.Where(c => c.GetFullText().Contains(search.ToLower()));
             }
 
+            //Filter computers on port type
             computers = computers.Where(c => selectedPort.Equals("All") || c.Connections.Select(con => con.Port.Name).Contains(selectedPort));
+
             decimal overallMemoryMax = repository.Computers.Select(c => c.Memory).Max();
 
+            //Handle sorting of data
             switch(orderBy)
             {
                 case "ID":
@@ -46,6 +52,7 @@ namespace MachineSpecs.Controllers
                     break;
             }
 
+            //Construct view model object
             return View(new ComputerListViewModel
             {
                 Computers = computers.Where(c => c.Memory >= memoryMin && c.Memory <= memoryMax),

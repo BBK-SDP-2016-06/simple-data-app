@@ -5,6 +5,11 @@ using System.Threading.Tasks;
 
 namespace MachineSpecs.Models
 {
+    /// <summary>
+    /// Used for initial testing purposes before a database migration and
+    /// connection were established. Used to ensure razor views and controllers
+    /// behaved as expected.
+    /// </summary>
     public class FakeComputerRepository : IComputerRepository
     {
         public IQueryable<Computer> Computers => new List<Computer> {

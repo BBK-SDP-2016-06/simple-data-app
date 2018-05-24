@@ -14,10 +14,17 @@ namespace MachineSpecs.Models
         public int Power { get; set; }
         public int ProcessorID { get; set; }
 
+        //Each computer contains a reference to its processor, graphics card
+        //and connections.
         public Processor Processor { get; set; }
         public GraphicsCard GraphicsCard { get; set; }
         public List<Connection> Connections { get; set; }
 
+        /// <summary>
+        /// Retrieves the text components of this Computer's
+        /// properties so that key word searching in enabled.
+        /// </summary>
+        /// <returns></returns>
         public string GetFullText()
         {
             return string.Join(' ', new List<string>
